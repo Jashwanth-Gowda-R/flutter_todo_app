@@ -1,4 +1,5 @@
-import 'package:advanced_flutter_todo_app/features/todo/pages/homepage.dart';
+import 'package:advanced_flutter_todo_app/common/utils/constants.dart';
+import 'package:advanced_flutter_todo_app/features/onboarding/pages/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -26,12 +27,14 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Shani Todo',
           theme: ThemeData(
+            scaffoldBackgroundColor: AppConst.kBKDark,
             colorScheme: ColorScheme.fromSeed(
               seedColor: Colors.deepPurple,
             ),
             useMaterial3: true,
           ),
-          home: const HomePage(),
+          themeMode: ThemeMode.dark,
+          home: const OnBoarding(),
         );
       },
     );
