@@ -1,3 +1,5 @@
+import 'package:advanced_flutter_todo_app/common/widgets/appstyle.dart';
+import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,12 +12,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text(
-          'Shani Todo App',
-          style: TextStyle(
-            fontSize: 30,
+        child: ReuseableText(
+          text: 'Shani Todo',
+          style: appstyle(
+            26,
+            Colors.blue,
+            FontWeight.bold,
           ),
         ),
       ),
