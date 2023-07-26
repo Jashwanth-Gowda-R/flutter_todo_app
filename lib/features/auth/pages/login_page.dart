@@ -4,6 +4,7 @@ import 'package:advanced_flutter_todo_app/common/widgets/custom_otn_btn.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/custom_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,6 +18,19 @@ class LoginPage extends ConsumerStatefulWidget {
 
 class _LoginPageState extends ConsumerState<LoginPage> {
   TextEditingController phone = TextEditingController();
+
+  Country country = Country(
+    phoneCode: '1',
+    countryCode: 'US',
+    e164Sc: 0,
+    geographic: true,
+    level: 1,
+    name: 'USA',
+    example: 'USA',
+    displayName: 'United States',
+    displayNameNoCountryCode: 'US',
+    e164Key: '',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +64,40 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               Center(
                 child: CustomTextField(
                   controller: phone,
-                  // prefixIcon: Container(
-                  //   padding: const EdgeInsets.all(4.0),
-                  //   child: GestureDetector(
-                  //     onTap: () {},
-                  //   ),
-                  // ),
-                  keyboardType: TextInputType.phone,
+                  prefixIcon: Container(
+                    padding: const EdgeInsets.all(14.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        showCountryPicker(
+                          context: context,
+                          countryListTheme: CountryListThemeData(
+                            backgroundColor: AppConst.kLight,
+                            bottomSheetHeight: AppConst.kHeight * 0.6,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(AppConst.kRadius),
+                              topRight: Radius.circular(AppConst.kRadius),
+                            ),
+                          ),
+                          onSelect: (Country c) {
+                            setState(() {
+                              print(c.flagEmoji);
+                              // country.flagEmoji=c.flagEmoji;
+                              country = c;
+                            });
+                          },
+                        );
+                      },
+                      child: ReuseableText(
+                        text: '${country.flagEmoji} + ${country.phoneCode}',
+                        style: appstyle(
+                          18,
+                          AppConst.kBKDark,
+                          FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
                   hintText: 'Enter Phone Number',
                   hintStyle: appstyle(
                     16,
@@ -68,13 +109,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               const HeightSpacer(
                 height: 20,
               ),
-              CustomOtlnBtn(
-                onTap: () {},
-                width: AppConst.kWidth * 0.9,
-                height: AppConst.kHeight * 0.07,
-                color: AppConst.kBKDark,
-                color2: AppConst.kLight,
-                text: 'Send Otp',
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: CustomOtlnBtn(
+                  onTap: () {},
+                  width: AppConst.kWidth * 0.9,
+                  height: AppConst.kHeight * 0.075,
+                  color: AppConst.kBKDark,
+                  color2: AppConst.kLight,
+                  text: 'Send Otp',
+                ),
               ),
             ],
           ),
