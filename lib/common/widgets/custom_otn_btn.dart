@@ -39,12 +39,14 @@ class CustomOtlnBtn extends StatelessWidget {
             color: color,
           ),
         ),
-        child: ReuseableText(
-          text: text,
-          style: appstyle(
-            18,
-            color,
-            FontWeight.bold,
+        child: Center(
+          child: ReuseableText(
+            text: text,
+            style: appstyle(
+              18,
+              color,
+              FontWeight.bold,
+            ),
           ),
         ),
       ),
