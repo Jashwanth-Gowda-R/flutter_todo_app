@@ -4,6 +4,7 @@ import 'package:advanced_flutter_todo_app/common/widgets/custom_otn_btn.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/custom_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
+import 'package:advanced_flutter_todo_app/features/auth/pages/otp_page.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -80,8 +81,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                           onSelect: (Country c) {
                             setState(() {
-                              print(c.flagEmoji);
-                              // country.flagEmoji=c.flagEmoji;
+                              // print(c.flagEmoji);
                               country = c;
                             });
                           },
@@ -112,7 +112,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: CustomOtlnBtn(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const OtpPage(),
+                      ),
+                    );
+                  },
                   width: AppConst.kWidth * 0.9,
                   height: AppConst.kHeight * 0.075,
                   color: AppConst.kBKDark,
