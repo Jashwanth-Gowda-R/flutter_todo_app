@@ -1,6 +1,7 @@
 import 'package:advanced_flutter_todo_app/common/utils/constants.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/appstyle.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/custom_text.dart';
+import 'package:advanced_flutter_todo_app/common/widgets/expansion_tile.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/width_spacer.dart';
@@ -199,7 +200,22 @@ class _HomePageState extends ConsumerState<HomePage>
                     ],
                   ),
                 ),
-              )
+              ),
+              const HeightSpacer(height: 20),
+              const XpansionTile(
+                text: 'Tommorow\'s tasks',
+                text2: 'nale',
+                children: [],
+              ),
+              const HeightSpacer(height: 20),
+              XpansionTile(
+                text: DateTime.now()
+                    .add(const Duration(days: 2))
+                    .toString()
+                    .substring(5, 10),
+                text2: 'nadidu',
+                children: const [],
+              ),
             ],
           ),
         ),
