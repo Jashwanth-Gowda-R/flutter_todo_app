@@ -5,6 +5,7 @@ import 'package:advanced_flutter_todo_app/common/widgets/expansion_tile.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/width_spacer.dart';
+import 'package:advanced_flutter_todo_app/features/todo/widgets/todo_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -192,6 +193,18 @@ class _HomePageState extends ConsumerState<HomePage>
                       Container(
                         height: AppConst.kHeight * 0.3,
                         color: AppConst.kBkLight,
+                        child: ListView(
+                          children: [
+                            TodoTile(
+                              start: "03:00",
+                              end: "05:00",
+                              switcher: Switch(
+                                value: false,
+                                onChanged: (val) {},
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
                         height: AppConst.kHeight * 0.3,
