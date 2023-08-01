@@ -5,6 +5,7 @@ import 'package:advanced_flutter_todo_app/common/widgets/expansion_tile.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/width_spacer.dart';
+import 'package:advanced_flutter_todo_app/features/todo/controllers/xpansion_provider.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/todo_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -215,10 +216,36 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
               ),
               const HeightSpacer(height: 20),
-              const XpansionTile(
+              XpansionTile(
                 text: 'Tommorow\'s tasks',
                 text2: 'nale',
-                children: [],
+                onExpansionChanged: (bool expanded) {
+                  ref.read(xpansionStateProvider.notifier).setStart(!expanded);
+                },
+                trailing: Padding(
+                  padding: EdgeInsets.only(
+                    right: 12.w,
+                  ),
+                  child: ref.watch(xpansionStateProvider)
+                      ? const Icon(
+                          AntDesign.circledown,
+                          color: AppConst.kLight,
+                        )
+                      : const Icon(
+                          AntDesign.closecircleo,
+                          color: AppConst.kBlueLight,
+                        ),
+                ),
+                children: [
+                  TodoTile(
+                    start: "03:00",
+                    end: "05:00",
+                    switcher: Switch(
+                      value: false,
+                      onChanged: (val) {},
+                    ),
+                  ),
+                ],
               ),
               const HeightSpacer(height: 20),
               XpansionTile(
@@ -227,7 +254,33 @@ class _HomePageState extends ConsumerState<HomePage>
                     .toString()
                     .substring(5, 10),
                 text2: 'nadidu',
-                children: const [],
+                onExpansionChanged: (bool expanded) {
+                  ref.read(xpansionState0Provider.notifier).setStart(!expanded);
+                },
+                trailing: Padding(
+                  padding: EdgeInsets.only(
+                    right: 12.w,
+                  ),
+                  child: ref.watch(xpansionState0Provider)
+                      ? const Icon(
+                          AntDesign.circledown,
+                          color: AppConst.kLight,
+                        )
+                      : const Icon(
+                          AntDesign.closecircleo,
+                          color: AppConst.kBlueLight,
+                        ),
+                ),
+                children: [
+                  TodoTile(
+                    start: "03:00",
+                    end: "05:00",
+                    switcher: Switch(
+                      value: false,
+                      onChanged: (val) {},
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
