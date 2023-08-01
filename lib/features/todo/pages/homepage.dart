@@ -76,6 +76,9 @@ class _HomePageState extends ConsumerState<HomePage>
               CustomTextField(
                 controller: _search,
                 hintText: 'Search',
+                hintStyle: const TextStyle(
+                  color: AppConst.kGreyLight,
+                ),
                 prefixIcon: Container(
                   padding: const EdgeInsets.all(14),
                   child: GestureDetector(
