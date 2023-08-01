@@ -1,14 +1,4 @@
-// To parse this JSON data, do
-//
-//     final userModel = userModelFromJson(jsonString);
-
-import 'dart:convert';
-
-UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
-
-String userModelToJson(UserModel data) => json.encode(data.toJson());
-
-class UserModel {
+class TaskModel {
   int? id;
   String? title;
   String? desc;
@@ -19,7 +9,7 @@ class UserModel {
   int? remaind;
   String? repeat;
 
-  UserModel({
+  TaskModel({
     this.id,
     this.title,
     this.desc,
@@ -31,7 +21,7 @@ class UserModel {
     this.repeat,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
         id: json["id"],
         title: json["title"],
         desc: json["desc"],
