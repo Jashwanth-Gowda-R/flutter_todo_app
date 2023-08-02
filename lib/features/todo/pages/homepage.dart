@@ -6,6 +6,7 @@ import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/width_spacer.dart';
 import 'package:advanced_flutter_todo_app/features/todo/controllers/xpansion_provider.dart';
+import 'package:advanced_flutter_todo_app/features/todo/pages/add_todo.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/todo_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,7 +63,14 @@ class _HomePageState extends ConsumerState<HomePage>
                         ),
                       ),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return const AddTask();
+                            }),
+                          );
+                        },
                         child: const Icon(
                           Icons.add,
                           color: AppConst.kBKDark,
