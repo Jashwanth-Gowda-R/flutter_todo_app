@@ -1,9 +1,11 @@
+import 'package:advanced_flutter_todo_app/common/models/task_models.dart';
 import 'package:advanced_flutter_todo_app/common/utils/constants.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/appstyle.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/custom_otn_btn.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/custom_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
 import 'package:advanced_flutter_todo_app/features/todo/controllers/dates/dates_provider.dart';
+import 'package:advanced_flutter_todo_app/features/todo/controllers/todo/todo_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -162,7 +164,34 @@ class _AddTaskState extends ConsumerState<AddTask> {
               text: 'Add Task',
               color: AppConst.kLight,
               color2: AppConst.kGreen,
-              onTap: () {},
+              onTap: () {
+                if (titleController.text.isNotEmpty &&
+                    descController.text.isNotEmpty &&
+                    scheduleDate.isNotEmpty &&
+                    startTime.isNotEmpty &&
+                    endTime.isNotEmpty) {
+                  TaskModel task = TaskModel(
+                    title: titleController.text,
+                    desc: descController.text,
+                    isCompleted: 0,
+                    date: scheduleDate.substring(0,10),
+                    startTime: startTime.substring(10, 16),
+                    endTime: endTime.substring(10, 16),
+                    remaind: 0,
+                    repeat: 'yes',
+                  );
+
+                  ref.read(todoStateProvider.notifier).addItem(task);
+
+                  ref.read(startTimeStateProvider.notifier).setStart('');
+                  ref.read(finishTimeStateProvider.notifier).setEnd('');
+                  ref.read(dateStateProvider.notifier).setDate('');
+
+                  Navigator.pop(context);
+                } else {
+                  debugPrint('failed to add task');
+                }
+              },
             ),
           ],
         ),

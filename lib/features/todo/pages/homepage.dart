@@ -5,6 +5,7 @@ import 'package:advanced_flutter_todo_app/common/widgets/expansion_tile.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/width_spacer.dart';
+import 'package:advanced_flutter_todo_app/features/todo/controllers/todo/todo_provider.dart';
 import 'package:advanced_flutter_todo_app/features/todo/controllers/xpansion_provider.dart';
 import 'package:advanced_flutter_todo_app/features/todo/pages/add_todo.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/todo_tile.dart';
@@ -31,6 +32,7 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(todoStateProvider.notifier).refresh();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -203,21 +205,9 @@ class _HomePageState extends ConsumerState<HomePage>
                     controller: tabController,
                     children: [
                       Container(
-                        height: AppConst.kHeight * 0.3,
-                        color: AppConst.kBkLight,
-                        child: ListView(
-                          children: [
-                            TodoTile(
-                              start: "03:00",
-                              end: "05:00",
-                              switcher: Switch(
-                                value: false,
-                                onChanged: (val) {},
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                          height: AppConst.kHeight * 0.3,
+                          color: AppConst.kBkLight,
+                          child: const TodayTasks()),
                       Container(
                         height: AppConst.kHeight * 0.3,
                         color: AppConst.kBkLight,
@@ -297,6 +287,37 @@ class _HomePageState extends ConsumerState<HomePage>
           ),
         ),
       ),
+    );
+  }
+}
+
+class TodayTasks extends ConsumerWidget {
+  const TodayTasks({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    var listData = ref.watch(todoStateProvider);
+    var today = ref.read(todoStateProvider.notifier).getToday();
+    var todayList = listData
+        .where(
+          (task) => task.isCompleted == 0 && task.date!.contains(today),
+        )
+        .toList();
+
+    return ListView.builder(
+      itemCount: todayList.length,
+      itemBuilder: (context, index) {
+        final data = todayList[index];
+        return TodoTile(
+          color: AppConst.kGreen,
+          title: data.title,
+          description: data.desc,
+          start: data.startTime,
+          end: data.endTime,
+        );
+      },
     );
   }
 }

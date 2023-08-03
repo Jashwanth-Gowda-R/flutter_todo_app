@@ -6,9 +6,9 @@ class DBHelper {
   static Future<void> createTables(sql.Database database) async {
     await database.execute("CREATE TABLE todos("
         "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-        "title STRING, desc TEXT, date String,"
-        "startTime String, endTime String"
-        "remind INTEGER, repeat STRING, "
+        "title STRING, desc TEXT, date String, "
+        "startTime String, endTime String, "
+        "remaind INTEGER, repeat STRING, "
         "isCompleted INTEGER)");
 
     await database.execute("CREATE TABLE user("
@@ -19,6 +19,7 @@ class DBHelper {
   static Future<sql.Database> db() async {
     return sql.openDatabase(
       'shani',
+      version: 1,
       onCreate: (sql.Database database, int version) async {
         await createTables(database);
       },
