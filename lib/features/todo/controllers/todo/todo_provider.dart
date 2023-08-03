@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:advanced_flutter_todo_app/common/helpers/db_helper.dart';
 import 'package:advanced_flutter_todo_app/common/models/task_models.dart';
+import 'package:advanced_flutter_todo_app/common/utils/constants.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'todo_provider.g.dart';
 
@@ -75,5 +78,11 @@ class TodoState extends _$TodoState {
       isCompleted = true;
     }
     return isCompleted;
+  }
+
+  dynamic getRandomColor() {
+    Random random = Random();
+    int randomIndex = random.nextInt(colors.length);
+    return colors[randomIndex];
   }
 }
