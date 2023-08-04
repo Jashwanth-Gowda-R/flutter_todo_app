@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "108755459227",
+    "project_id": "shani-todo-flutter-app",
+    "storage_bucket": "shani-todo-flutter-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108755459227:android:10c11b9f054a1c186cfa3e",
+        "android_client_info": {
+          "package_name": "com.example.advanced_flutter_todo_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108755459227-83218g4brj51e5s0vkrdmv8469of93ao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9-rG7ha8Pyu_gPmg-84KUFZ-qXNGDTr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "108755459227-83218g4brj51e5s0vkrdmv8469of93ao.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "108755459227-2k7gfmf15dps423gi359dul21ca3jpnc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.advancedFlutterTodoApp.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
