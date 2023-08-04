@@ -21,7 +21,7 @@ class TommorowTasks extends ConsumerWidget {
         )
         .toList();
 
-    dynamic color = ref.watch(todoStateProvider.notifier).getRandomColor();
+    dynamic color = ref.read(todoStateProvider.notifier).getRandomColor();
 
     return XpansionTile(
       text: 'Tommorow\'s tasks',

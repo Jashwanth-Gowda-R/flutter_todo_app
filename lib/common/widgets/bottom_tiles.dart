@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:advanced_flutter_todo_app/features/todo/controllers/todo/todo_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -31,6 +32,8 @@ class BottomTitles extends StatelessWidget {
           children: [
             Consumer(
               builder: (context, ref, child) {
+                dynamic color =
+                    ref.read(todoStateProvider.notifier).getRandomColor();
                 return Container(
                   height: 80,
                   width: 5,
@@ -38,7 +41,7 @@ class BottomTitles extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(AppConst.kRadius),
                     ),
-                    color: AppConst.kGreen,
+                    color: color,
                   ),
                 );
               },

@@ -37,7 +37,15 @@ class TodayTasks extends ConsumerWidget {
           switcher: Switch(
             value: isCompleted,
             onChanged: (val) {
-              isCompleted = val;
+              ref.read(todoStateProvider.notifier).markAsCompleted(
+                    data.id ?? 0,
+                    data.title.toString(),
+                    data.desc.toString(),
+                    data.date.toString(),
+                    data.startTime.toString(),
+                    data.endTime.toString(),
+                    1,
+                  );
             },
           ),
           delete: () {

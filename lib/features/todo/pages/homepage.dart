@@ -8,6 +8,7 @@ import 'package:advanced_flutter_todo_app/common/widgets/width_spacer.dart';
 import 'package:advanced_flutter_todo_app/features/todo/controllers/todo/todo_provider.dart';
 import 'package:advanced_flutter_todo_app/features/todo/controllers/xpansion_provider.dart';
 import 'package:advanced_flutter_todo_app/features/todo/pages/add_todo.dart';
+import 'package:advanced_flutter_todo_app/features/todo/widgets/completed_tasks.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/day_after_tomoorow.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/today_task_list.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/todo_tile.dart';
@@ -214,6 +215,7 @@ class _HomePageState extends ConsumerState<HomePage>
                       Container(
                         height: AppConst.kHeight * 0.3,
                         color: AppConst.kBkLight,
+                        child: const CompletedTasks(),
                       ),
                     ],
                   ),
