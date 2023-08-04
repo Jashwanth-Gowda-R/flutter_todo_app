@@ -1,17 +1,14 @@
 import 'package:advanced_flutter_todo_app/common/utils/constants.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/appstyle.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/custom_text.dart';
-import 'package:advanced_flutter_todo_app/common/widgets/expansion_tile.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/width_spacer.dart';
 import 'package:advanced_flutter_todo_app/features/todo/controllers/todo/todo_provider.dart';
-import 'package:advanced_flutter_todo_app/features/todo/controllers/xpansion_provider.dart';
 import 'package:advanced_flutter_todo_app/features/todo/pages/add_todo.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/completed_tasks.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/day_after_tomoorow.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/today_task_list.dart';
-import 'package:advanced_flutter_todo_app/features/todo/widgets/todo_tile.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/tommorow_tasks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -209,9 +206,10 @@ class _HomePageState extends ConsumerState<HomePage>
                     controller: tabController,
                     children: [
                       Container(
-                          height: AppConst.kHeight * 0.3,
-                          color: AppConst.kBkLight,
-                          child: const TodayTasks()),
+                        height: AppConst.kHeight * 0.3,
+                        color: AppConst.kBkLight,
+                        child: const TodayTasks(),
+                      ),
                       Container(
                         height: AppConst.kHeight * 0.3,
                         color: AppConst.kBkLight,

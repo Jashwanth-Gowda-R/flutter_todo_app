@@ -2,6 +2,7 @@ import 'package:advanced_flutter_todo_app/common/utils/constants.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/expansion_tile.dart';
 import 'package:advanced_flutter_todo_app/features/todo/controllers/todo/todo_provider.dart';
 import 'package:advanced_flutter_todo_app/features/todo/controllers/xpansion_provider.dart';
+import 'package:advanced_flutter_todo_app/features/todo/pages/update_todo.dart';
 import 'package:advanced_flutter_todo_app/features/todo/widgets/todo_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -56,7 +57,18 @@ class TommorowTasks extends ConsumerWidget {
               ref.read(todoStateProvider.notifier).deleteTodo(todo.id ?? 0);
             },
             editWidget: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                titles = todo.title.toString();
+                descs = todo.desc.toString();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return UpdateTask(
+                      id: todo.id ?? 0,
+                    );
+                  }),
+                );
+              },
               child: const Icon(
                 MaterialCommunityIcons.circle_edit_outline,
               ),
