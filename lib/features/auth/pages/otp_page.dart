@@ -1,13 +1,21 @@
-import 'package:advanced_flutter_todo_app/common/utils/constants.dart';
-import 'package:advanced_flutter_todo_app/common/widgets/appstyle.dart';
-import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
-import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 
+import 'package:advanced_flutter_todo_app/common/utils/constants.dart';
+import 'package:advanced_flutter_todo_app/common/widgets/appstyle.dart';
+import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
+import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
+
 class OtpPage extends StatelessWidget {
-  const OtpPage({super.key});
+  final String smsCodeId;
+  final String phone;
+  const OtpPage({
+    Key? key,
+    required this.smsCodeId,
+    required this.phone,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

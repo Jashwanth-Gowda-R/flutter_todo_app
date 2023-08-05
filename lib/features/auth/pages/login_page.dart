@@ -116,7 +116,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const OtpPage(),
+                        builder: (context) => const OtpPage(
+                          phone: '',
+                          smsCodeId: '',
+                        ),
                       ),
                     );
                   },

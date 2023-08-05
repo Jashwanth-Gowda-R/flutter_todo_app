@@ -1,13 +1,11 @@
+import 'package:advanced_flutter_todo_app/common/routes/routes.dart';
 import 'package:advanced_flutter_todo_app/common/utils/constants.dart';
-import 'package:advanced_flutter_todo_app/features/todo/pages/homepage.dart';
 import 'package:advanced_flutter_todo_app/firebase_options.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-// com.googleusercontent.apps.108755459227-kv3ffi68a88j06vd16daeu832vbmc5t5
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,7 +54,9 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
             ),
             themeMode: ThemeMode.dark,
-            home: const HomePage(),
+            initialRoute: MyRoutes.home,
+            // home: const HomePage(),
+            onGenerateRoute: MyRoutes.onGenerateRoute,
           );
         });
       },
