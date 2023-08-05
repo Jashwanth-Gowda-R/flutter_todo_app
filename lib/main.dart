@@ -38,7 +38,7 @@ class MyApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(userProvider.notifier).refresh;
+    ref.read(userProvider.notifier).refresh();
     List<UserModel> users = ref.watch(userProvider);
 
     return ScreenUtilInit(

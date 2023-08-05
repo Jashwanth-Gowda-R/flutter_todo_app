@@ -4,7 +4,8 @@ import 'package:advanced_flutter_todo_app/common/widgets/custom_otn_btn.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/custom_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/reuseable_text.dart';
-import 'package:advanced_flutter_todo_app/features/auth/pages/otp_page.dart';
+import 'package:advanced_flutter_todo_app/common/widgets/showDialog.dart';
+import 'package:advanced_flutter_todo_app/features/auth/controllers/auth_controller.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,6 +33,25 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     displayNameNoCountryCode: 'US',
     e164Key: '',
   );
+
+  sendCodeUser() {
+    if (phone.text.isEmpty) {
+      return showAlertDialog(
+        context: context,
+        message: 'Pls enter Phone number',
+      );
+    } else if (phone.text.length < 8) {
+      return showAlertDialog(
+        context: context,
+        message: 'Pls enter proper Phone number',
+      );
+    } else {
+      ref.read(authControllerProvider).sendSms(
+            context: context,
+            phone: '+${country.phoneCode}${phone.text}',
+          );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +92,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         showCountryPicker(
                           context: context,
                           countryListTheme: CountryListThemeData(
-                            backgroundColor: AppConst.kLight,
+                            backgroundColor: AppConst.kGreyLight,
                             bottomSheetHeight: AppConst.kHeight * 0.6,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(AppConst.kRadius),
@@ -84,6 +104,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               // print(c.flagEmoji);
                               country = c;
                             });
+                            // ref
+                            //     .read(codeStateProvider.notifier)
+                            //     .setStart(c.phoneCode);
+                            // print(ref.read(codeStateProvider));
                           },
                         );
                       },
@@ -113,15 +137,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 padding: const EdgeInsets.all(10.0),
                 child: CustomOtlnBtn(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const OtpPage(
-                          phone: '',
-                          smsCodeId: '',
-                        ),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const OtpPage(
+                    //       phone: '',
+                    //       smsCodeId: '',
+                    //     ),
+                    //   ),
+                    // );
+                    sendCodeUser();
                   },
                   width: AppConst.kWidth * 0.9,
                   height: AppConst.kHeight * 0.075,
