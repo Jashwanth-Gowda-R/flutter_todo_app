@@ -59,7 +59,7 @@ class NotificationsPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             ReuseableText(
-                              text: 'Today',
+                              text: payload!.split('|')[2],
                               style: appstyle(
                                 14,
                                 AppConst.kBKDark,
@@ -68,7 +68,8 @@ class NotificationsPage extends StatelessWidget {
                             ),
                             const WidthSpacer(width: 15),
                             ReuseableText(
-                              text: 'From : start To end',
+                              text:
+                                  'From : ${payload!.split('|')[3]} To ${payload!.split('|')[4]}',
                               style: appstyle(
                                 14,
                                 AppConst.kBKDark,
@@ -80,7 +81,7 @@ class NotificationsPage extends StatelessWidget {
                       ),
                       const HeightSpacer(height: 10),
                       ReuseableText(
-                        text: 'Title',
+                        text: payload!.split('|')[0],
                         style: appstyle(
                           30,
                           AppConst.kBKDark,
@@ -89,7 +90,7 @@ class NotificationsPage extends StatelessWidget {
                       ),
                       const HeightSpacer(height: 10),
                       Text(
-                        'DescriptionDescriptionDescription DescriptionDescriptionDescriptionDescription DescriptionDescriptionDescriptionDescription DescriptionDescriptionDescriptionDescription DescriptionDescriptionDescriptionDescription ',
+                        payload!.split('|')[1],
                         maxLines: 8,
                         textAlign: TextAlign.justify,
                         style: appstyle(
