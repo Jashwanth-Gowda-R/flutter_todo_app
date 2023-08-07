@@ -32,6 +32,7 @@ class AuthRepository {
       if (!mounted) {
         return;
       }
+      DBHelper.createUser(1);
       Navigator.pushNamedAndRemoveUntil(
         context,
         MyRoutes.home,
@@ -57,7 +58,7 @@ class AuthRepository {
           showAlertDialog(context: context, message: e.toString());
         },
         codeSent: (smsCodeId, resendCodeId) {
-          DBHelper.createUser(1);
+          // DBHelper.createUser(1);
           Navigator.pushNamedAndRemoveUntil(
             context,
             MyRoutes.otp,
