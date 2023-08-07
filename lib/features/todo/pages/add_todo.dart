@@ -1,11 +1,14 @@
+import 'package:advanced_flutter_todo_app/common/helpers/notification_helper.dart';
 import 'package:advanced_flutter_todo_app/common/models/task_models.dart';
 import 'package:advanced_flutter_todo_app/common/utils/constants.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/appstyle.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/custom_otn_btn.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/custom_text.dart';
 import 'package:advanced_flutter_todo_app/common/widgets/height_spacer.dart';
+import 'package:advanced_flutter_todo_app/common/widgets/showDialog.dart';
 import 'package:advanced_flutter_todo_app/features/todo/controllers/dates/dates_provider.dart';
 import 'package:advanced_flutter_todo_app/features/todo/controllers/todo/todo_provider.dart';
+import 'package:advanced_flutter_todo_app/features/todo/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,6 +25,21 @@ class AddTask extends ConsumerStatefulWidget {
 class _AddTaskState extends ConsumerState<AddTask> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
+
+  late NotificationsHelper notificationsHelper;
+  late NotificationsHelper controller;
+
+  List<int> notification = [];
+
+  @override
+  void initState() {
+    super.initState();
+    notificationsHelper = NotificationsHelper(ref: ref);
+    Future.delayed(const Duration(seconds: 0), () {
+      controller = NotificationsHelper(ref: ref);
+    });
+    notificationsHelper.initializeNotification();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +130,9 @@ class _AddTaskState extends ConsumerState<AddTask> {
                       ref
                           .read(startTimeStateProvider.notifier)
                           .setStart(date.toString());
+
+                      notification =
+                          ref.read(startTimeStateProvider.notifier).dates(date);
                     }, locale: picker.LocaleType.en);
                   },
                 ),
@@ -174,22 +195,39 @@ class _AddTaskState extends ConsumerState<AddTask> {
                     title: titleController.text,
                     desc: descController.text,
                     isCompleted: 0,
-                    date: scheduleDate.substring(0,10),
+                    date: scheduleDate.substring(0, 10),
                     startTime: startTime.substring(10, 16),
                     endTime: endTime.substring(10, 16),
                     remaind: 0,
                     repeat: 'yes',
                   );
 
+                  notificationsHelper.scheduledNotification(
+                    notification[0],
+                    notification[1],
+                    notification[2],
+                    notification[3],
+                    task,
+                  );
+
                   ref.read(todoStateProvider.notifier).addItem(task);
 
-                  ref.read(startTimeStateProvider.notifier).setStart('');
-                  ref.read(finishTimeStateProvider.notifier).setEnd('');
-                  ref.read(dateStateProvider.notifier).setDate('');
+                  // ref.read(startTimeStateProvider.notifier).setStart('');
+                  // ref.read(finishTimeStateProvider.notifier).setEnd('');
+                  // ref.read(dateStateProvider.notifier).setDate('');
 
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return const HomePage();
+                    }),
+                  );
                 } else {
                   debugPrint('failed to add task');
+                  showAlertDialog(
+                    context: context,
+                    message: 'failed to add task',
+                  );
                 }
               },
             ),
